@@ -4,8 +4,7 @@ spring:
       discovery:
         server-addr: 127.0.0.1:8848
     alicloud:
-      access-key: LTAI5tQpMBsmxR7sdbh7cUQp
-      secret-key: yIIOTjhDUIA1liar7m5dsMtETpJFM4
+
       oss:
         endpoint: oss-cn-shanghai.aliyuncs.com
         bucket: gulimall-zhouzhong
