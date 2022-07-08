@@ -78,7 +78,6 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
 
             }
 
-
             wareSkuDao.insert(skuEntity);
         }else{
             wareSkuDao.addStock(skuId,wareId,skuNum);

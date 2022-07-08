@@ -25,8 +25,6 @@ import com.zz.gulimall.ware.service.PurchaseService;
 import org.springframework.transaction.annotation.Transactional;
 
 
-
-
 @Service("purchaseService")
 public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity> implements PurchaseService {
 
@@ -50,7 +48,7 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
     public PageUtils queryPageUnreceivePurchase(Map<String, Object> params) {
         IPage<PurchaseEntity> page = this.page(
                 new Query<PurchaseEntity>().getPage(params),
-                new QueryWrapper<PurchaseEntity>().eq("status",0).or().eq("status",1)
+                new QueryWrapper<PurchaseEntity>().eq("status",WareConstant.PurchaseStatusEnum.CREATED.getCode()).or().eq("status",WareConstant.PurchaseStatusEnum.ASSIGNED.getCode())
         );
 
         return new PageUtils(page);
@@ -118,8 +116,6 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
         //2、改变采购单的状态
         this.updateBatchById(collect);
 
-
-
         //3、改变采购项的状态
         collect.forEach((item)->{
             List<PurchaseDetailEntity> entities = detailService.listDetailByPurchaseId(item.getId());
@@ -138,7 +134,6 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
     public void done(PurchaseDoneVo doneVo) {
 
         Long id = doneVo.getId();
-
 
         //2、改变采购项的状态
         Boolean flag = true;
@@ -166,12 +161,9 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
         //1、改变采购单状态
         PurchaseEntity purchaseEntity = new PurchaseEntity();
         purchaseEntity.setId(id);
-        purchaseEntity.setStatus(flag?WareConstant.PurchaseStatusEnum.FINISH.getCode():WareConstant.PurchaseStatusEnum.HASERROR.getCode());
+        purchaseEntity.setStatus(flag?WareConstant.PurchaseStatusEnum.FINISH.getCode(): WareConstant.PurchaseStatusEnum.HASERROR.getCode());
         purchaseEntity.setUpdateTime(new Date());
         this.updateById(purchaseEntity);
-
-
-
 
     }
 

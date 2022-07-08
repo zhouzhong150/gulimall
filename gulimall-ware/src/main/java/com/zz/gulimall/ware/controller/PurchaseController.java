@@ -51,7 +51,6 @@ public class PurchaseController {
         return R.ok();
     }
 
-    ///ware/purchase/unreceive/list
     ///ware/purchase/merge
     @PostMapping("/merge")
     public R merge(@RequestBody MergeVo mergeVo){
@@ -61,7 +60,6 @@ public class PurchaseController {
     }
 
     @RequestMapping("/unreceive/list")
-    //@RequiresPermissions("ware:purchase:list")
     public R unreceivelist(@RequestParam Map<String, Object> params){
         PageUtils page = purchaseService.queryPageUnreceivePurchase(params);
 
@@ -72,7 +70,6 @@ public class PurchaseController {
      * 列表
      */
     @RequestMapping("/list")
-    //@RequiresPermissions("ware:purchase:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = purchaseService.queryPage(params);
 
@@ -84,7 +81,6 @@ public class PurchaseController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    //@RequiresPermissions("ware:purchase:info")
     public R info(@PathVariable("id") Long id){
 		PurchaseEntity purchase = purchaseService.getById(id);
 
@@ -95,7 +91,6 @@ public class PurchaseController {
      * 保存
      */
     @RequestMapping("/save")
-    //@RequiresPermissions("ware:purchase:save")
     public R save(@RequestBody PurchaseEntity purchase){
         purchase.setUpdateTime(new Date());
         purchase.setCreateTime(new Date());
@@ -108,7 +103,6 @@ public class PurchaseController {
      * 修改
      */
     @RequestMapping("/update")
-    //@RequiresPermissions("ware:purchase:update")
     public R update(@RequestBody PurchaseEntity purchase){
 		purchaseService.updateById(purchase);
 
@@ -119,7 +113,6 @@ public class PurchaseController {
      * 删除
      */
     @RequestMapping("/delete")
-    //@RequiresPermissions("ware:purchase:delete")
     public R delete(@RequestBody Long[] ids){
 		purchaseService.removeByIds(Arrays.asList(ids));
 

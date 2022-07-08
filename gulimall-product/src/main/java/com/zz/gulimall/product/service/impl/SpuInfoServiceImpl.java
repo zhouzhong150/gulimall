@@ -81,12 +81,9 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         descEntity.setDecript(String.join(",",decript));
         spuInfoDescService.saveSpuInfoDesc(descEntity);
 
-
-
         //3、保存spu的图片集 pms_spu_images
         List<String> images = vo.getImages();
         imagesService.saveImages(infoEntity.getId(),images);
-
 
         //4、保存spu的规格参数;pms_product_attr_value
         List<BaseAttrs> baseAttrs = vo.getBaseAttrs();
@@ -103,7 +100,6 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         }).collect(Collectors.toList());
         attrValueService.saveProductAttr(collect);
 
-
         //5、保存spu的积分信息；gulimall_sms->sms_spu_bounds
         Bounds bounds = vo.getBounds();
         SpuBoundTo spuBoundTo = new SpuBoundTo();
@@ -114,9 +110,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
             log.error("远程保存spu积分信息失败");
         }
 
-
         //5、保存当前spu对应的所有sku信息；
-
         List<Skus> skus = vo.getSkus();
         if(skus!=null && skus.size()>0){
             skus.forEach(item->{
@@ -173,9 +167,6 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
                         log.error("远程保存sku优惠信息失败");
                     }
                 }
-
-
-
             });
         }
 

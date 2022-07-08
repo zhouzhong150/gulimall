@@ -69,7 +69,7 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
 
         String max = (String) params.get("max");
 
-        if(!StringUtils.isEmpty(max)  ){
+        if(!StringUtils.isEmpty(max)){
             try{
                 BigDecimal bigDecimal = new BigDecimal(max);
 

@@ -3,7 +3,6 @@ package com.zz.gulimall.product.controller;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-
 import com.zz.gulimall.product.entity.AttrEntity;
 import com.zz.gulimall.product.service.AttrAttrgroupRelationService;
 import com.zz.gulimall.product.service.AttrService;
@@ -12,7 +11,6 @@ import com.zz.gulimall.product.vo.AttrGroupRelationVo;
 import com.zz.gulimall.product.vo.AttrGroupWithAttrsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import com.zz.gulimall.product.entity.AttrGroupEntity;
 import com.zz.gulimall.product.service.AttrGroupService;
 import com.zz.common.utils.PageUtils;
@@ -47,8 +45,8 @@ public class AttrGroupController {
      */
     @RequestMapping("/list/{catelogId}")
     public R list(@RequestParam Map<String, Object> params, @PathVariable("catelogId") Long catelogId){
-//        PageUtils page = attrGroupService.queryPage(params);
         PageUtils page = attrGroupService.queryPage(params, catelogId);
+
         return R.ok().put("page", page);
     }
 
@@ -69,7 +67,6 @@ public class AttrGroupController {
      * 保存
      */
     @RequestMapping("/save")
-    //@RequiresPermissions("product:attrgroup:save")
     public R save(@RequestBody AttrGroupEntity attrGroup){
 		attrGroupService.save(attrGroup);
 
@@ -80,7 +77,6 @@ public class AttrGroupController {
      * 修改
      */
     @RequestMapping("/update")
-    //@RequiresPermissions("product:attrgroup:update")
     public R update(@RequestBody AttrGroupEntity attrGroup){
 		attrGroupService.updateById(attrGroup);
 
@@ -91,7 +87,6 @@ public class AttrGroupController {
      * 删除
      */
     @RequestMapping("/delete")
-    //@RequiresPermissions("product:attrgroup:delete")
     public R delete(@RequestBody Long[] attrGroupIds){
 		attrGroupService.removeByIds(Arrays.asList(attrGroupIds));
 
