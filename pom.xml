@@ -19,6 +19,7 @@
         <module>renren-generator</module>
         <module>gulimall-common</module>
         <module>gulimall-gateway</module>
+        <module>gulimall-third-party</module>
     </modules>
 
     <properties>
@@ -26,6 +27,8 @@
         <spring-boot.version>2.1.8.RELEASE</spring-boot.version>
         <spring-cloud.version>Greenwich.SR3</spring-cloud.version>
         <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
     <dependencyManagement>
